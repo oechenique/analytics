@@ -47,3 +47,9 @@ The spatial data science workflow in this project follows a systematic approach:
 - **Programming Languages**: Python
 - **Libraries**: GeoPandas, Shapely, Matplotlib, Plotly Express, scikit-learn, TensorFlow
 - **GIS Platforms**: Mapbox, OpenStreetMap
+
+## Notebooks
+
+In this repository, you'll find Jupyter notebooks showcasing detailed analyses and implementations. Feel free to explore and learn from the following notebooks:
+
+1. [Exploring Spatial Analytics](https://github.com/oechenique/analytics/blob/main/Notebook/gis_analytics.ipynb): Uncover insights using spatial clustering techniques and visualizations.
