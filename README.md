@@ -52,4 +52,4 @@ The spatial data science workflow in this project follows a systematic approach:
 
 In this repository, you'll find Jupyter notebooks showcasing detailed analyses and implementations. Feel free to explore and learn from the following notebooks:
 
-1. [Exploring Spatial Analytics](https://github.com/oechenique/analytics/blob/main/Notebook/gis_analytics.ipynb): Uncover insights using spatial clustering techniques and visualizations.
+1. [Exploring Spatial Analytics](https://github.com/oechenique/analytics/blob/main/Notebook/gis_analytics.ipynb): Uncover insights using spatial analytics techniques and visualizations.
