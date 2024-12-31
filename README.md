@@ -10,17 +10,17 @@ This repository provides a comprehensive introduction to spatial analysis using 
 
 Three interconnected notebooks demonstrating progressive spatial analysis techniques:
 
-1. **Getting Started with GeoDataFrames: Kyoto Temples**
+1. **Getting Started with GeoDataFrames: Kyoto Temples** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/oechenique/analytics/blob/main/Notebook/01_getting_started_with_geoDataFrames.ipynb)
    - Basic spatial operations
    - Temple distribution analysis
    - Cultural mapping techniques
 
-2. **Spatial Operations: Tokyo Transit**
+2. **Spatial Operations: Tokyo Transit** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/oechenique/analytics/blob/main/Notebook/02_spatial_operations_with_geoDataFrames.ipynb)
    - Network analysis
    - Transit accessibility
    - Urban connectivity patterns
 
-3. **Advanced Analysis: Metropolitan Demographics**
+3. **Advanced Analysis: Metropolitan Demographics** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/oechenique/analytics/blob/main/Notebook/03_advanced_spatial_analysis.ipynb)
    - Population density modeling
    - Urban clustering
    - Predictive analytics
