@@ -13,7 +13,8 @@ Three interconnected notebooks demonstrating progressive spatial analysis techni
 1. **Getting Started with GeoDataFrames: Kyoto Temples** 
    - Basic spatial operations
    - Temple distribution analysis
-   - Cultural mapping techniques [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/oechenique/analytics/blob/main/Notebook/01_getting_started_with_geoDataFrames.ipynb)
+   - Cultural mapping techniques
+   - [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/oechenique/analytics/blob/main/Notebook/01_getting_started_with_geoDataFrames.ipynb)
 
 2. **Spatial Operations: Tokyo Transit** 
    - Network analysis
@@ -21,10 +22,11 @@ Three interconnected notebooks demonstrating progressive spatial analysis techni
    - Urban connectivity patterns
    - [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/oechenique/analytics/blob/main/Notebook/02_spatial_operations_with_geoDataFrames.ipynb)
 
-3. **Advanced Analysis: Metropolitan Demographics** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/oechenique/analytics/blob/main/Notebook/03_advanced_spatial_analysis.ipynb)
+3. **Advanced Analysis: Metropolitan Demographics** 
    - Population density modeling
    - Urban clustering
    - Predictive analytics
+   - [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/oechenique/analytics/blob/main/Notebook/03_advanced_spatial_analysis.ipynb)
 
 ## 🛠️ Technologies
 
