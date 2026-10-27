@@ -1,0 +1,29 @@
+# Local environment for the notebook (tested with Python 3.12.10 on 2026-10-27).
+#   python -m venv .venv
+#   .venv\Scripts\python.exe -m pip install -r requirements.txt      (Windows)
+#   .venv/bin/python -m pip install -r requirements.txt              (Linux/macOS)
+# Not needed on Colab: the first cell installs only what Colab lacks (osmnx, pooch).
+
+# Vector data and projections
+geopandas==1.2.0
+shapely==2.2.0
+pyproj==3.8.0
+pyogrio==0.13.0
+
+# OpenStreetMap: stations and walking network (scipy: nearest nodes on a projected graph)
+osmnx==2.1.1
+networkx==3.7
+scipy==1.18.1
+
+# Tables
+numpy==2.5.4
+pandas==3.1.0
+
+# Cached download (city boundary; the listings zip when the repo is not cloned)
+pooch==1.9.0
+
+# Figures
+matplotlib==3.11.2
+
+# Jupyter
+jupyterlab==4.6.4
