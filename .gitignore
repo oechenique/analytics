@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data downloaded or cached at run time (re-downloaded, never committed)
+data/*
+# The Properati listings zip is part of the repo
+!data/real_estate_data.zip
+*.geojson
+*.html
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

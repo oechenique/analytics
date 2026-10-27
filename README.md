@@ -1,65 +1,114 @@
-# 🗾 Spatial Analysis with Python
+# analytics
 
-*Exploring Japanese Geospatial Analytics | 日本の空間解析*
+[![Python 3.12](https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white)](requirements.txt)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-## Overview 概要
+**Start here →** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/oechenique/analytics/blob/main/notebooks/01_caba_subway_apartments.ipynb) · [🇦🇷 Español](README.es.md)
 
-This repository provides a comprehensive introduction to spatial analysis using Python, focusing on Japanese geographic contexts. Perfect for data scientists, urban planners, and GIS enthusiasts interested in advanced spatial analytics.
+**Real-estate geoanalytics in Buenos Aires: how many apartments for sale are within 800 m of a subway station, as the crow flies and on foot. Properati listings, OpenStreetMap streets, GeoPandas and OSMnx, buffers in metres.**
 
-## 📚 Notebooks
+![Apartments around Congreso de Tucumán: 800 m circle vs. 800 m walk](docs/img/congreso_walk_vs_circle.png)
 
-Three interconnected notebooks demonstrating progressive spatial analysis techniques:
+One notebook, runnable in Colab or locally, rewritten in 2026 from the 2023 version (kept in [`legacy/`](legacy/) with three unfinished drafts about Japan).
 
-1. **Getting Started with GeoDataFrames: Kyoto Temples** 
-   - Basic spatial operations
-   - Temple distribution analysis
-   - Cultural mapping techniques
-   - [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/oechenique/analytics/blob/main/Notebook/01_getting_started_with_geoDataFrames.ipynb)
+## Notebook
 
-2. **Spatial Operations: Tokyo Transit** 
-   - Network analysis
-   - Transit accessibility
-   - Urban connectivity patterns
-   - [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/oechenique/analytics/blob/main/Notebook/02_spatial_operations_with_geoDataFrames.ipynb)
+| # | Notebook | What it does | Runtime* |
+|---|---|---|---|
+| 01 | [Apartments near a subway station](notebooks/01_caba_subway_apartments.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/oechenique/analytics/blob/main/notebooks/01_caba_subway_apartments.ipynb) | Listings clipped to the city, Congreso de Tucumán station from OSM, 800 m circle vs. 800 m along the walking network, counts and median USD/m² | ~3 min first run, ~15 s cached |
 
-3. **Advanced Analysis: Metropolitan Demographics** 
-   - Population density modeling
-   - Urban clustering
-   - Predictive analytics
-   - [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/oechenique/analytics/blob/main/Notebook/03_advanced_spatial_analysis.ipynb)
+\* Measured on a laptop over home broadband; most of it is the Overpass download.
 
-## 🛠️ Technologies
+## How it works
 
-- **Core Libraries**: GeoPandas, OSMnx, Folium
-- **Visualization**: Matplotlib, Seaborn
-- **Analysis**: Scikit-learn, Scipy
-- **Data Sources**: OpenStreetMap, Japanese Statistics Bureau
-
-## 🚀 Getting Started
-
-```bash
-# Clone repository
-git clone https://github.com/yourusername/spatial-analysis
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Launch Jupyter
-jupyter notebook
+```mermaid
+flowchart LR
+  ZIP["Properati listings<br/>data/real_estate_data.zip"] -->|pandas: CABA,<br/>apartments, lat/lon| PTS["Points<br/>EPSG:5347 (metres)"]
+  GCBA["Buenos Aires Data<br/>barrios.geojson"] -->|pooch, dissolve| CITY["City boundary"] --> PTS
+  OSM["OpenStreetMap<br/>(Overpass via OSMnx)"] --> ST["Station"]
+  OSM -->|walk network,<br/>1.5 km around it| G["Projected graph"]
+  ST --> CIRC["800 m circle"]
+  ST --> DIJ["Dijkstra ≤ 800 m<br/>+ hops to nearest nodes"]
+  G --> DIJ
+  PTS --> CIRC --> OUT["Counts, USD/m²,<br/>map in docs/img"]
+  PTS --> DIJ --> OUT
 ```
 
-## 🗺️ #30DayMapChallenge 
-Join me in the **#30DayMapChallenge** for November 2024! Exploring different mapping themes daily:
-[30 Day Map Challenge Repository](https://github.com/oechenique/30DayMapChallenge)
+Everything is projected to POSGAR 2007 / Argentina 5 (EPSG:5347) before measuring, so buffers and distances are in metres. Walking distance is the shortest path along OSM streets from the node nearest to the station to the node nearest to each apartment, plus the two straight hops to those nodes.
 
-## Let's Connect! 一緒に学びましょう 🌐
-[![Twitter Badge](https://img.shields.io/badge/-@GastonEchenique-1DA1F2?style=flat&logo=x&logoColor=white&link=https://x.com/GastonEchenique)](https://x.com/GastonEchenique)
-[![LinkedIn Badge](https://img.shields.io/badge/-Gastón_Echenique-0A66C2?style=flat&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/gaston-echenique/)](https://www.linkedin.com/in/gaston-echenique/)
-[![GitHub Badge](https://img.shields.io/badge/-oechenique-333?style=flat&logo=github&logoColor=white&link=https://github.com/oechenique)](https://github.com/oechenique)
-[![GeoAnalytics Badge](https://img.shields.io/badge/-GeoAnalytics_Site-2ecc71?style=flat&logo=google-earth&logoColor=white&link=https://oechenique.github.io/geoanalytics/)](https://oechenique.github.io/geoanalytics/)
-[![Discord Badge](https://img.shields.io/badge/-Gastón|ガストン-5865F2?style=flat&logo=discord&logoColor=white&link=https://discord.com/users/gastonechenique)](https://discord.com/users/gastonechenique)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/rhrqmdyaig)
+## What it shows
 
-よろしくお願いします！Let's connect and grow together in the world of GIS and Data Science!
----
-*さようなら - Happy Mapping!* 🗺️
+- **535 apartments are in the 800 m circle, but only 316 are within 800 m on foot**: 41 % of the circle is further than that when you walk the streets. The area within an 800 m walk is ~95 ha against 201 ha for the circle; the median walk is 1.39× the straight-line distance ([notebook 01](notebooks/01_caba_subway_apartments.ipynb)).
+- **The 2023 answer used a buffer in degrees** (`0.0072°`), which at 34.6°S is an ellipse of ~800 × 660 m: 470 apartments, neither the circle nor the walk.
+- **Prices hold across the three areas**: median 2,694–2,744 USD/m². The 2023 heatmap plotted `price_per_m2`, which mixes pesos and dollars; this version uses `price_usd_per_m2`.
+- The file has 121,220 sale listings, 19,418 of them apartments with coordinates inside the city boundary.
+
+## Decisions and what I learned
+
+- **Project before buffering.** A degree of longitude at Buenos Aires is ~18 % shorter than a degree of latitude; a buffer in EPSG:4326 is an ellipse and GeoPandas warns about it. EPSG:5347 is the official projected CRS for the city's longitude.
+- **Network distance instead of an isochrone polygon.** Each apartment is measured to its own nearest node, so the count does not depend on how the walkable area is drawn; the shaded polygon on the map is only a concave hull for display.
+- **Only the network around the station.** 1.5 km around Congreso de Tucumán (2,384 nodes) covers everything reachable in 800 m and downloads in seconds; the whole city's walking network is not needed.
+- **City boundary from Buenos Aires Data.** The 2023 version read it from the INDEC WFS, which did not respond on 2026-10-27; the city's own barrios GeoJSON is enough to clip the listings.
+
+<details>
+<summary><b>Limits and what I'd do next</b></summary>
+
+- Listings are asking prices, not sale prices, and the file has no listing dates.
+- Many listings share approximate coordinates (geocoded to a street or block), so counts are approximate near the edges.
+- OSM's walking network includes some paths through private or closed areas and misses others; 800 m is also a rule of thumb, not a measured walking threshold.
+- Next: repeat for every subway station and compare price per m² inside the walking area vs. just outside it.
+
+</details>
+
+<details>
+<summary><b>Stack</b></summary>
+
+| Layer | Tools |
+|---|---|
+| Vector data | `geopandas`, `shapely`, `pyproj` (EPSG:5347) |
+| OpenStreetMap | `osmnx` (Overpass, walking graph), `networkx` (Dijkstra), `scipy` (nearest nodes) |
+| Tables | `pandas`, `numpy` |
+| Data management | `pooch` (cached download) |
+| Figures | `matplotlib` |
+
+</details>
+
+<details>
+<summary><b>Repository layout</b></summary>
+
+| Path | Contents |
+|---|---|
+| `notebooks/` | The notebook, with its outputs |
+| `data/real_estate_data.zip` | Properati listings used by the notebook (other files in `data/` are downloaded at run time and ignored) |
+| `docs/img/` | Figure exported by the notebook |
+| `legacy/` | The original 2023 notebook and three unfinished Japan drafts, untouched, with a note |
+| `Notebook/` | Stubs at the old paths, so links shared before 2026 still lead somewhere |
+| `requirements.txt` | Pinned environment for running locally |
+
+</details>
+
+## Run it
+
+**Colab:** click a badge above. The first cell installs `osmnx` and `pooch`, and the listings zip is downloaded from this repo.
+
+**Locally** (tested with Python 3.12.10 on Windows 11):
+
+```bash
+git clone https://github.com/oechenique/analytics.git
+cd analytics
+python -m venv .venv
+.venv/Scripts/python -m pip install -r requirements.txt   # Linux/macOS: .venv/bin/python
+.venv/Scripts/python -m jupyter lab notebooks/
+```
+
+No credentials are needed.
+
+<details>
+<summary><b>Licenses and attribution</b></summary>
+
+- **Code:** [MIT](LICENSE).
+- **Listings:** sale listings published by [Properati](https://www.properati.com.ar/) (the file includes each listing's `properati_url`). The license of this export is not stated in the file; it is credited here as the source.
+- **Streets and stations:** © OpenStreetMap contributors, [ODbL](https://www.openstreetmap.org/copyright).
+- **City boundary:** barrios of the City of Buenos Aires, [Buenos Aires Data](https://data.buenosaires.gob.ar/).
+
+</details>
