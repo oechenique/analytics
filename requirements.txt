@@ -11,9 +11,12 @@ pyproj==3.8.0
 pyogrio==0.13.0
 
 # OpenStreetMap: stations and walking network
-# ([neighbors] brings scipy, needed for nearest nodes on a projected graph)
+# ([neighbors] brings scipy, needed for nearest nodes on a projected graph, and scikit-learn;
+#  both pinned to what pip resolved on 2026-10-30)
 osmnx[neighbors]==2.1.1
 networkx==3.7
+scipy==1.18.1
+scikit-learn==1.9.1
 
 # Tables
 numpy==2.5.4
