@@ -10,10 +10,10 @@ shapely==2.2.0
 pyproj==3.8.0
 pyogrio==0.13.0
 
-# OpenStreetMap: stations and walking network (scipy: nearest nodes on a projected graph)
-osmnx==2.1.1
+# OpenStreetMap: stations and walking network
+# ([neighbors] brings scipy, needed for nearest nodes on a projected graph)
+osmnx[neighbors]==2.1.1
 networkx==3.7
-scipy==1.18.1
 
 # Tables
 numpy==2.5.4
